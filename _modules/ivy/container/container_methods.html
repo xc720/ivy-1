@@ -10387,6 +10387,16 @@
 <span class="sd">        if ``x_i`` is real number and ``False`` otherwise.</span>
 <span class="sd">        The returned array should have a data type of ``bool``.</span>
 
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-1+5j, 0-0j, 1.23j]),</span>
+<span class="sd">    ...                   b=ivy.array([7.9, 3.3j, -4.2-5.9j]))</span>
+<span class="sd">    &gt;&gt;&gt; z = ivy.Container.static_isreal(x)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([False, True, False]),</span>
+<span class="sd">        b: ivy.array([True, False, False])</span>
+<span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
 
@@ -10430,6 +10440,15 @@
 <span class="sd">        if ``self_i`` is real number and ``False`` otherwise.</span>
 <span class="sd">        The returned array should have a data type of ``bool``.</span>
 
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-1j, -np.inf, 1.23+7j]),\</span>
+<span class="sd">                      b=ivy.array([0.0, 3.3j, 1+0j]))</span>
+<span class="sd">    &gt;&gt;&gt; x.isreal()</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([False, True, False]),</span>
+<span class="sd">        b: ivy.array([True, False, True])</span>
+<span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
 
@@ -10943,8 +10962,8 @@
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    ivy.Container static method variant of ivy.kaiser_window. This method </span>
-<span class="sd">    simply wraps the function, and so the docstring for ivy.kaiser_window </span>
+<span class="sd">    ivy.Container static method variant of ivy.kaiser_window. This method</span>
+<span class="sd">    simply wraps the function, and so the docstring for ivy.kaiser_window</span>
 <span class="sd">    also applies to this method with minimal changes.</span>
 
 <span class="sd">    Parameters</span>
@@ -10957,7 +10976,7 @@
 <span class="sd">    beta</span>
 <span class="sd">        a float used as shape parameter for the window.</span>
 <span class="sd">    dtype</span>
-<span class="sd">        data type of the returned array.        </span>
+<span class="sd">        data type of the returned array.</span>
 <span class="sd">    out</span>
 <span class="sd">        optional output container, for writing the result to.</span>
 
@@ -10991,8 +11010,8 @@
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    ivy.Container instance method variant of ivy.kaiser_window. This method </span>
-<span class="sd">    simply wraps the function, and so the docstring for ivy.kaiser_window </span>
+<span class="sd">    ivy.Container instance method variant of ivy.kaiser_window. This method</span>
+<span class="sd">    simply wraps the function, and so the docstring for ivy.kaiser_window</span>
 <span class="sd">    also applies to this method with minimal changes.</span>
 
 <span class="sd">    Parameters</span>
@@ -11005,7 +11024,7 @@
 <span class="sd">    beta</span>
 <span class="sd">        a float used as shape parameter for the window.</span>
 <span class="sd">    dtype</span>
-<span class="sd">        data type of the returned array.        </span>
+<span class="sd">        data type of the returned array.</span>
 <span class="sd">    out</span>
 <span class="sd">        optional output container, for writing the result to.</span>
 
@@ -11039,7 +11058,7 @@
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    ivy.Container static method variant of ivy.moveaxis. This method simply wraps </span>
+<span class="sd">    ivy.Container static method variant of ivy.moveaxis. This method simply wraps</span>
 <span class="sd">    the function, and so the docstring for ivy.moveaxis also applies to this method</span>
 <span class="sd">    with minimal changes.</span>
 
