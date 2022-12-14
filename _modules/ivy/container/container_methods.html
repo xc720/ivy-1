@@ -2093,7 +2093,7 @@
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">container_dict</span><span class="p">,</span> <span class="n">ivyh</span><span class="o">=</span><span class="n">ivyh</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">from_disk_as_pickled</span><span class="p">(</span><span class="n">pickle_filepath</span><span class="p">,</span> <span class="n">ivyh</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">cont_from_disk_as_pickled</span><span class="p">(</span><span class="n">pickle_filepath</span><span class="p">,</span> <span class="n">ivyh</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Load container object from disk at the specified pickle filepath.</span>
 
 <span class="sd">    Parameters</span>
@@ -2115,7 +2115,7 @@
     <span class="p">)</span><span class="o">.</span><span class="n">to_ivy</span><span class="p">()</span>
 
 
-<span class="k">def</span> <span class="nf">from_disk_as_json</span><span class="p">(</span><span class="n">json_filepath</span><span class="p">,</span> <span class="n">ivyh</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">cont_from_disk_as_json</span><span class="p">(</span><span class="n">json_filepath</span><span class="p">,</span> <span class="n">ivyh</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Load container object from disk at the specified json filepath. If some</span>
 <span class="sd">    objects were not json-able during saving, then they will be loaded as strings.</span>
 
