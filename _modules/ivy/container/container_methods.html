@@ -2503,7 +2503,7 @@
     <span class="k">return</span> <span class="n">duplciates</span>
 
 
-<span class="k">def</span> <span class="nf">update_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">cont_update_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="p">):</span>
     <span class="n">new_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">att_name</span> <span class="o">=</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">k</span>
@@ -2532,7 +2532,7 @@
 <span class="sd">    **config</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># update config</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">update_config</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cont_update_config</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
     <span class="c1"># update container values inplace</span>
     <span class="k">if</span> <span class="n">dict_in</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span>
@@ -2568,7 +2568,7 @@
                 <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 
 
-<span class="k">def</span> <span class="nf">all_true</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">cont_all_true</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">assert_is_bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">key_chains</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
