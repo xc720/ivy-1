@@ -33,11 +33,20 @@ def max_pool2d(
     padding: str,
     /,
     *,
+    ceil_mode: bool = False,
     data_format: str = "NHWC",
     out: Optional[Union[tf.Tensor, tf.Variable]] = None,
 ) -> Union[tf.Tensor, tf.Variable]:
     if data_format == "NCHW":
         x = tf.transpose(x, (0, 2, 3, 1))
+
+    if ceil_mode:
+        if data_format.startswith("NH"):
+            extension = ((0, 0), (0, 1), (0, 1), (0, 0))
+        else:
+            extension = ((0, 0), (0, 0), (0, 1), (0, 1))
+        x = tf.pad(x, extension, mode='CONSTANT', constant_values=-math.inf)
+
     res = tf.nn.max_pool2d(x, kernel, strides, padding)
     if data_format == "NCHW":
         return tf.transpose(res, (0, 3, 1, 2))

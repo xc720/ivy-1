@@ -10,6 +10,7 @@ from ivy_tests.test_ivy.helpers import handle_test
 @handle_test(
     fn_tree="functional.ivy.experimental.max_pool2d",
     x_k_s_p=helpers.arrays_for_pooling(min_dims=4, max_dims=4, min_side=1, max_side=4),
+    ceil_mode=st.booleans(),
     test_gradients=st.just(False),
 )
 def test_max_pool2d(
@@ -18,10 +19,12 @@ def test_max_pool2d(
     test_flags,
     backend_fw,
     fn_name,
+    ground_truth_backend,
+    ceil_mode,
 ):
     dtype, x, kernel, stride, pad = x_k_s_p
     helpers.test_function(
-        ground_truth_backend="jax",
+        ground_truth_backend=ground_truth_backend,
         input_dtypes=dtype,
         test_flags=test_flags,
         fw=backend_fw,
@@ -32,6 +35,7 @@ def test_max_pool2d(
         kernel=kernel,
         strides=stride,
         padding=pad,
+        ceil_mode=ceil_mode,
     )
 
 

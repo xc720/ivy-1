@@ -62,6 +62,7 @@ def max_pool2d(
     padding: str,
     /,
     *,
+    ceil_mode: bool = False,
     data_format: str = "NHWC",
     out: Optional[torch.Tensor] = None,
 ) -> torch.Tensor:
@@ -90,7 +91,7 @@ def max_pool2d(
             "Invalid padding arg {}\n"
             'Must be one of: "VALID" or "SAME"'.format(padding)
         )
-    res = torch.nn.functional.max_pool2d(x, kernel, strides, 0)
+    res = torch.nn.functional.max_pool2d(x, kernel, strides, 0, ceil_mode=ceil_mode)
     if data_format == "NHWC":
         return res.permute(0, 2, 3, 1)
     return res

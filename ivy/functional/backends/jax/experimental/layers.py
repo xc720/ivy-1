@@ -11,7 +11,7 @@ from ivy.functional.backends.jax import JaxArray
 from ivy.functional.backends.jax.random import RNG
 
 
-def general_pool(inputs, init, reduce_fn, window_shape, strides, padding):
+def general_pool(inputs, init, reduce_fn, window_shape, strides, padding, ceil_mode=False):
 
     if isinstance(strides, int):
         strides = (strides,) * len(window_shape)
@@ -34,6 +34,7 @@ def general_pool(inputs, init, reduce_fn, window_shape, strides, padding):
         is_single_input = True
 
     assert inputs.ndim == len(dims), f"len({inputs.shape}) != len({dims})"
+
     y = jlax.reduce_window(inputs, init, reduce_fn, dims, strides, padding)
     if is_single_input:
         y = jnp.squeeze(y, axis=0)
@@ -77,13 +78,24 @@ def max_pool2d(
     padding: str,
     /,
     *,
+    ceil_mode: bool = False,
     data_format: str = "NHWC",
     out: Optional[JaxArray] = None,
 ) -> JaxArray:
     if data_format == "NCHW":
         x = jnp.transpose(x, (0, 2, 3, 1))
 
-    res = general_pool(x, -jnp.inf, jlax.max, kernel, strides, padding)
+    if isinstance(kernel, int):
+        kernel = (kernel,) * 2
+
+    if ceil_mode:
+        if data_format.startswith("NH"):
+            extension = ((0, 0), (0, 1), (0, 1), (0, 0))
+        else:
+            extension = ((0, 0), (0, 0), (0, 1), (0, 1))
+        x = jnp.pad(x, extension, mode='constant', constant_values=x.min())
+
+    res = general_pool(x, -jnp.inf, jlax.max, kernel, strides, padding, ceil_mode=ceil_mode)
 
     if data_format == "NCHW":
         return jnp.transpose(res, (0, 3, 1, 2))

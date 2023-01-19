@@ -72,6 +72,7 @@ def max_pool1d(
     )
 
 
+
 @to_native_arrays_and_back
 @handle_out_argument
 @handle_nestable
@@ -82,6 +83,7 @@ def max_pool2d(
     padding: str,
     /,
     *,
+    ceil_mode: bool = False,
     data_format: str = "NHWC",
     out: Optional[ivy.Array] = None,
 ) -> ivy.Array:
@@ -138,7 +140,13 @@ def max_pool2d(
 
             [[46, 47]]]])
     """
-    return ivy.current_backend(x).max_pool2d(x, kernel, strides, padding, out=out)
+    return ivy.current_backend(x).max_pool2d(x,
+                                             kernel,
+                                             strides,
+                                             padding,
+                                             ceil_mode=ceil_mode,
+                                             data_format=data_format,
+                                             out=out)
 
 
 @to_native_arrays_and_back

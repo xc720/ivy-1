@@ -76,6 +76,7 @@ class ArrayWithLayersExperimental(abc.ABC):
         /,
         *,
         data_format: str = "NHWC",
+        ceil_mode: bool = False,
         out: Optional[ivy.Array] = None,
     ) -> ivy.Array:
         """
@@ -134,6 +135,7 @@ class ArrayWithLayersExperimental(abc.ABC):
             kernel,
             strides,
             padding,
+            ceil_mode=ceil_mode,
             data_format=data_format,
             out=out,
         )

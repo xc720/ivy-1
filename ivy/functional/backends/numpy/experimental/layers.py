@@ -72,6 +72,7 @@ def max_pool2d(
     padding: str,
     /,
     *,
+    ceil_mode: bool = False,
     data_format: str = "NHWC",
     out: Optional[np.ndarray] = None,
 ) -> np.ndarray:
@@ -104,8 +105,24 @@ def max_pool2d(
     )
 
     x_shape = x.shape
-    new_h = (x_shape[1] - kernel[0]) // strides[0] + 1
-    new_w = (x_shape[2] - kernel[1]) // strides[1] + 1
+    # auxiliaries for the output shape and determining ceil mode
+    new_h_aux = (x_shape[1] - kernel[0]) / strides[0]
+    new_w_aux = (x_shape[2] - kernel[1]) / strides[1]
+
+    # handle ceil_mode with padding.
+    if ceil_mode and not all((isinstance(new_w_aux, int), isinstance(new_w_aux, int))):
+        if data_format.startswith("NH"):
+            extension = ((0, 0), (0, 1), (0, 1), (0, 0))
+        else:
+            extension = ((0, 0), (0, 0), (0, 1), (0, 1))
+        x = np.pad(x, extension, mode='constant', constant_values=x.min())
+        x_shape = x.shape
+        new_h_aux = (x_shape[1] - kernel[0]) / strides[0]
+        new_w_aux = (x_shape[2] - kernel[1]) / strides[1]
+
+    new_h = math.floor(new_h_aux) + 1
+    new_w = math.floor(new_w_aux) + 1
+
     new_shape = [x_shape[0], new_h, new_w] + list(kernel) + [x_shape[-1]]
     new_strides = (
         x.strides[0],
