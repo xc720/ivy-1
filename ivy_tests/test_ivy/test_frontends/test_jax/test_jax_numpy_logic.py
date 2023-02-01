@@ -138,6 +138,7 @@ def test_jax_numpy_isneginf(
     )
 
 
+
 # isposinf
 @handle_frontend_test(
     fn_tree="jax.numpy.isposinf",
